@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram id="ExpenseERD" name="Database Schema">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="user_table" value="&lt;b&gt;users&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="u_col1" value="+ id: UUID [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="user_table"><mxGeometry y="26" width="220" height="26" as="geometry" /></mxCell>
+        <mxCell id="u_col2" value="+ username: String(50) [UQ]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="user_table"><mxGeometry y="52" width="220" height="26" as="geometry" /></mxCell>
+        <mxCell id="u_col3" value="+ email: String(100) [UQ]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="user_table"><mxGeometry y="78" width="220" height="26" as="geometry" /></mxCell>
+        <mxCell id="u_col4" value="+ created_at: DateTime" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="user_table"><mxGeometry y="104" width="220" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="cat_table" value="&lt;b&gt;categories&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="220" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="c_col1" value="+ id: Integer [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="cat_table"><mxGeometry y="26" width="220" height="26" as="geometry" /></mxCell>
+        <mxCell id="c_col2" value="+ name: String(50) [UQ]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="cat_table"><mxGeometry y="52" width="220" height="26" as="geometry" /></mxCell>
+        <mxCell id="c_col3" value="+ description: String(150)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="cat_table"><mxGeometry y="78" width="220" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="exp_table" value="&lt;b&gt;expenses&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="450" y="120" width="260" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="e_col1" value="+ id: String(36) [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="26" width="260" height="26" as="geometry" /></mxCell>
+        <mxCell id="e_col2" value="+ user_id: UUID [FK -&gt; users.id]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="52" width="260" height="26" as="geometry" /></mxCell>
+        <mxCell id="e_col3" value="+ category_id: Integer [FK -&gt; categories.id]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="78" width="260" height="26" as="geometry" /></mxCell>
+        <mxCell id="e_col4" value="+ amount: Numeric(10,2)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="104" width="260" height="26" as="geometry" /></mxCell>
+        <mxCell id="e_col5" value="+ currency: String(3)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="130" width="260" height="26" as="geometry" /></mxCell>
+        <mxCell id="e_col6" value="+ description: String(150)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="156" width="260" height="26" as="geometry" /></mxCell>
+        <mxCell id="e_col7" value="+ created_at: DateTime" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;" vertex="1" parent="exp_table"><mxGeometry y="182" width="260" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="rel_user_exp" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#6c8ebf;" edge="1" parent="1" source="u_col1" target="e_col2" />
+        <mxCell id="rel_cat_exp" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="c_col1" target="e_col3" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
